@@ -38,6 +38,7 @@ hl.bind(mainMod .. " + " .. shiftMod .. " + C", hl.dsp.exec_cmd("code ~/.config/
 hl.bind(mainMod .. " + " .. altMod .. " + C", hl.dsp.exec_cmd("code ~/Documents/Articles/"))
 
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(terminal .. " sudo lazydocker"))
+hl.bind(mainMod .. " + G", hl.dsp.exec_cmd(terminal .. " sudo lazygit"))
 
 
 -- Switch workspaces with mainMod + [0-9]
