@@ -11,6 +11,6 @@ local mods = require("modules.var")
 
 hl.on("hyprland.start", function () 
   hl.exec_cmd(mods.terminal)
-  hl.exec_cmd("nm-applet")
+  hl.exec_cmd("nm-applet & hyprsunset")
   hl.exec_cmd("waybar & hyprpaper & flatpak run app.zen_browser.zen")
 end)

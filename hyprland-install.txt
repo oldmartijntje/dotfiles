@@ -10,3 +10,5 @@ yay -Sy hyprlauncher
 yay -Sy hyprlock
 yay -Sy swappy
 yay -Sy quickshell
+yay -Sy hyprsunset
+yay -Sy rofi
