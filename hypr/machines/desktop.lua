@@ -1,4 +1,5 @@
 -- This is the archinstall of 07/06/2026
+local mods = require("modules.var")
 
 hl.monitor({
     output   = "DP-4",
@@ -18,3 +19,5 @@ hl.monitor({
     position = "-1920x0",
     scale    = "1",
 })
+
+hl.bind(mods.mainMod .. " + CTRL + C", hl.dsp.exec_cmd("code ~/Documents/Code/Articles/"))

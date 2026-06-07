@@ -1,4 +1,5 @@
 -- for if you forget to select. 
+local mods = require("modules.var")
 
 hl.monitor({
     output   = "eDP-1",

@@ -1,4 +1,5 @@
 -- This is the archinstall of 28/05/2026 (probook laptop)
+local mods = require("modules.var")
 
 hl.monitor({
     output   = "eDP-1",
@@ -6,3 +7,5 @@ hl.monitor({
     position = "0x0",
     scale    = "1",
 })
+
+hl.bind(mods.mainMod .. " + CTRL + C", hl.dsp.exec_cmd("code ~/Documents/Articles/"))

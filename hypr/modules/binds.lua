@@ -1,65 +1,56 @@
--- Set programs that you use
-local terminal    = "kitty"
-local fileManager = "dolphin"
-local menu        = "hyprlauncher"
+local mods = require("modules.var")
 
 ---------------------
 ---- KEYBINDINGS ----
 ---------------------
 
-local mainMod = "SUPER" -- Sets "Windows" key as main modifier
-local ctrlMod = "CTRL" -- Sets "CTRL" key as the ctrl modifier
-local shiftMod = "SHIFT" -- Sets "SHIFT" key as the shift modifier
-local altMod = "ALT" -- Sets "ALT" key as the alt modifier
-
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
-hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
-local closeWindowBind = hl.bind(mainMod .. " + ESCAPE", hl.dsp.window.close())
+hl.bind(mods.mainMod .. " + Q", hl.dsp.exec_cmd(mods.terminal))
+local closeWindowBind = hl.bind(mods.mainMod .. " + ESCAPE", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
-hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
-hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
-hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
-hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
+hl.bind(mods.mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+hl.bind(mods.mainMod .. " + E", hl.dsp.exec_cmd(mods.fileManager))
+hl.bind(mods.mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mods.mainMod .. " + R", hl.dsp.exec_cmd(mods.menu))
+hl.bind(mods.mainMod .. " + P", hl.dsp.window.pseudo())
+hl.bind(mods.mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 
 hl.bind("Print", hl.dsp.exec_cmd('grim -g "$(slurp)" - | swappy -f -'))
-hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd('grim -g "$(slurp -d)" - | wl-copy'))
+hl.bind(mods.mainMod .. " + Print", hl.dsp.exec_cmd('grim -g "$(slurp -d)" - | wl-copy'))
 
 -- Move focus with mainMod + arrow keys
-hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + up",    hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
+hl.bind(mods.mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
+hl.bind(mods.mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
+hl.bind(mods.mainMod .. " + up",    hl.dsp.focus({ direction = "up" }))
+hl.bind(mods.mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
 
-hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
-hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("code"))
-hl.bind(mainMod .. " + " .. shiftMod .. " + C", hl.dsp.exec_cmd("code ~/.config/"))
-hl.bind(mainMod .. " + " .. altMod .. " + C", hl.dsp.exec_cmd("code ~/Documents/Articles/"))
+hl.bind(mods.mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
+hl.bind(mods.mainMod .. " + C", hl.dsp.exec_cmd("code"))
+hl.bind(mods.mainMod .. " + SHIFT + C", hl.dsp.exec_cmd("code ~/.config/"))
 
-hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(terminal .. " sudo lazydocker"))
-hl.bind(mainMod .. " + G", hl.dsp.exec_cmd(terminal .. " lazygit"))
+hl.bind(mods.mainMod .. " + D", hl.dsp.exec_cmd(mods.terminal .. " sudo lazydocker"))
+hl.bind(mods.mainMod .. " + G", hl.dsp.exec_cmd(mods.terminal .. " lazygit"))
 
 
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
 for i = 1, 10 do
     local key = i % 10 -- 10 maps to key 0
-    hl.bind(mainMod .. " + " .. key,             hl.dsp.focus({ workspace = i}))
-    hl.bind(mainMod .. " + SHIFT + " .. key,     hl.dsp.window.move({ workspace = i }))
+    hl.bind(mods.mainMod .. " + " .. key,             hl.dsp.focus({ workspace = i}))
+    hl.bind(mods.mainMod .. " + SHIFT + " .. key,     hl.dsp.window.move({ workspace = i }))
 end
 
 -- Example special workspace (scratchpad)
-hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special("magic"))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
+hl.bind(mods.mainMod .. " + S",         hl.dsp.workspace.toggle_special("magic"))
+hl.bind(mods.mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- Scroll through existing workspaces with mainMod + scroll
-hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
+hl.bind(mods.mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
+hl.bind(mods.mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
-hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
-hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+hl.bind(mods.mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
+hl.bind(mods.mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Laptop multimedia keys for volume and LCD brightness
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
