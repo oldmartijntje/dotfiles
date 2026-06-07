@@ -7,3 +7,5 @@ hl.monitor({
     position = "0x0",
     scale    = "1",
 })
+
+hl.exec_cmd("rofi -e \"WARNING:\nYou haven't selected a XDG_SESSION_OPT in your ~/.config/hypr/modules/env.lua\nThis will probalby have catastrophic implications\"")
