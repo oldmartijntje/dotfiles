@@ -9,7 +9,7 @@
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
-        "sway/workspaces",
+        "custom/power",
         "sway/mode",
         "sway/scratchpad",
         "custom/media"
@@ -35,8 +35,7 @@
         "battery",
         "battery#bat2",
         "clock",
-        "tray",
-        "custom/power"
+        "tray"
     ],
     "bluetooth": {
         // "controller": "controller1", // specify the alias of the controller if there are more than 1 on the system
