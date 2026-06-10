@@ -97,11 +97,6 @@
             ]
         },
         {
-            "touch": "~/.config/quickshell/shell.qml",
-            "raw-content": "",
-            "copy-content-from": "~/.config/quickshell/shell.qml"
-        },
-        {
             "systemctl": "syncthing.service --user",
             "enable": true,
             "start": true
