@@ -5,7 +5,7 @@
             "sync": true
         },
         {
-            "git": "https://docs.oldmartijntje.nl/400-School/Year-2/Avans-2-x-POA-Arch-Linux"
+            "git": "https://aur.archlinux.org/yay.git"
         },
         {
             "exec-in": "yay",
@@ -110,6 +110,37 @@
             "manualStep": "Check whether nvidia works",
             "explenation": "Run the command, if it doesn't return an error it's good.",
             "exampleCommand": "sudo cat /sys/module/nvidia_drm/parameters/modeset"
+        },
+        {
+            "exec-in": "~/",
+            "commands": [
+                {
+                    "exec": "mkdir Documents"
+                },
+                {
+                    "exec": "mkdir Downloads"
+                },
+                {
+                    "exec": "mkdir Music"
+                },
+                {
+                    "exec": "mkdir Pictures"
+                },
+                {
+                    "exec": "mkdir Templates"
+                },
+                {
+                    "exec": "mkdir Videos"
+                }
+            ]
+        },
+        {
+            "exec-in": "~/Documents",
+            "commands": [
+                {
+                    "git": "git@github.com:oldmartijntje/Articles.git"
+                }
+            ]
         }
     ]
 }
