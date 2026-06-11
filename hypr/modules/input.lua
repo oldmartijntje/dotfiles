@@ -4,6 +4,7 @@
 
 hl.config({
     input = {
+        numlock_by_default = true,
         kb_layout  = "us",
         kb_variant = "",
         kb_model   = "",
