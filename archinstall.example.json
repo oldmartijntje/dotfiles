@@ -46,7 +46,9 @@
                 "blueman",
                 "bluez",
                 "bluez-utils",
-                "flameshot"
+                "flameshot",
+                "xdg-desktop-portal",
+                "xdg-desktop-portal-hyprland"
             ],
             "sync": true
         },
