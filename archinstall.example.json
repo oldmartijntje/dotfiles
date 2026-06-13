@@ -63,6 +63,8 @@
         {
             "comment": "Install all other packages (yay -S)",
             "package": [
+                "docker",
+                "docker-compose",
                 "lazygit",
                 "lazydocker",
                 "libreoffice-still",
