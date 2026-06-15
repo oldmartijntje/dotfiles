@@ -112,6 +112,11 @@
             "start": true
         },
         {
+            "systemctl": "docker",
+            "enable": true,
+            "start": true
+        },
+        {
             "manualStep": "Check whether nvidia works",
             "explenation": "Run the command, if it doesn't return an error it's good.",
             "exampleCommand": "sudo cat /sys/module/nvidia_drm/parameters/modeset"
