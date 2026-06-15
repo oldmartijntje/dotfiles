@@ -1,164 +1,187 @@
 {
-    "commands": [
+  "commands": [
+    {
+      "desc": "Set pacman as package_manager",
+      "command": "var",
+      "args": [
         {
-            "package": "--needed git base-devel",
-            "sync": true
-        },
-        {
-            "git": "https://aur.archlinux.org/yay.git"
-        },
-        {
-            "exec-in": "yay",
-            "commands": [
-                {
-                    "exec": "makepkg -si"
-                }
-            ]
-        },
-        {
-            "var": [
-                {
-                    "key": "package-manager",
-                    "value": "yay"
-                }
-            ]
-        },
-        {
-            "comment": "Install all system related packages (yay -Sy)",
-            "package": [
-                "quickshell",
-                "flatpak",
-                "wl-clipboard",
-                "hyprpolkitagent",
-                "visual-studio-code-bin",
-                "firefox",
-                "hyprpaper",
-                "waybar",
-                "wl-clipboard",
-                "hyprlauncher",
-                "hyprlock",
-                "swappy",
-                "hyprsunset",
-                "rofi",
-                "cliphist",
-                "ttf-nerd-fonts-symbols",
-                "nvidia-open",
-                "blueman",
-                "bluez",
-                "bluez-utils",
-                "flameshot",
-                "xdg-desktop-portal",
-                "xdg-desktop-portal-hyprland"
-            ],
-            "sync": true
-        },
-        {
-            "manualStep": "include multilib",
-            "explenation": "Open /etc/pacman.conf and made sure `Include = /etc/pacman.conf.d/mirrorlist` isn't commented out ([multilib])",
-            "exampleCommand": "sudo nano /etc/pacman.conf"
-        },
-        {
-            "exec": "sudo mkinitcpio -P"
-        },
-        {
-            "comment": "Install all other packages (yay -S)",
-            "package": [
-                "docker",
-                "docker-compose",
-                "lazygit",
-                "lazydocker",
-                "libreoffice-still",
-                "npm",
-                "jetbrains-toolbox",
-                "ark",
-                "konsole",
-                "imageviewer",
-                "mupdf",
-                "syncthing",
-                "chromium",
-                "python-pip",
-                "steam"
-            ]
-        },
-        {
-            "define": "flatpak",
-            "commands": [
-                "flatpak install %s"
-            ],
-            "allowList": true
-        },
-        {
-            "flatpak": [
-                "flathub",
-                "io.github.flattool.Warehouse",
-                "app.zen_browser.zen",
-                "com.discordapp.Discord",
-                "com.github.IsmaelMartinez.teams_for_linux",
-                "com.github.tchx84.Flatseal",
-                "com.spotify.Client",
-                "com.stremio.Stremio",
-                "org.pulseaudio.pavucontrol",
-                "md.obsidian.Obsidian"
-            ]
-        },
-        {
-            "systemctl": "syncthing.service --user",
-            "enable": true,
-            "start": true
-        },
-        {
-            "systemctl": "bluetooth.service",
-            "enable": true,
-            "start": true
-        },
-        {
-            "systemctl": "docker",
-            "enable": true,
-            "start": true
-        },
-        {
-            "manualStep": "Check whether nvidia works",
-            "explenation": "Run the command, if it doesn't return an error it's good.",
-            "exampleCommand": "sudo cat /sys/module/nvidia_drm/parameters/modeset"
-        },
-        {
-            "exec-in": "~/",
-            "commands": [
-                {
-                    "exec": "mkdir Documents"
-                },
-                {
-                    "exec": "mkdir Downloads"
-                },
-                {
-                    "exec": "mkdir Music"
-                },
-                {
-                    "exec": "mkdir Pictures"
-                },
-                {
-                    "exec": "mkdir Templates"
-                },
-                {
-                    "exec": "mkdir Videos"
-                }
-            ]
-        },
-        {
-            "exec-in": "~/Documents",
-            "commands": [
-                {
-                    "git": "git@github.com:oldmartijntje/Articles.git"
-                }
-            ]
-        },
-        {
-            "exec-in": "~/Pictures",
-            "commands": [
-                {
-                    "exec": "mkdir Screenshots"
-                }
-            ]
+          "key": "package_manager",
+          "value": "pacman"
         }
-    ]
+      ]
+    },
+    {
+      "command": "package",
+      "argument": "--needed git base-devel",
+      "sync": true
+    },
+    {
+      "command": "git-clone",
+      "argument": "https://aur.archlinux.org/yay.git"
+    },
+    {
+      "command": "exec-in",
+      "argument": "yay",
+      "args": [
+        {
+          "command": "exec",
+          "argument": "makepkg -si"
+        }
+      ]
+    },
+    {
+      "command": "var",
+      "args": [
+        {
+          "key": "package_manager",
+          "value": "yay"
+        }
+      ]
+    },
+    {
+      "command": "package",
+      "args": [
+        "quickshell",
+        "flatpak",
+        "wl-clipboard",
+        "hyprpolkitagent",
+        "visual-studio-code-bin",
+        "firefox",
+        "hyprpaper",
+        "waybar",
+        "wl-clipboard",
+        "hyprlauncher",
+        "hyprlock",
+        "swappy",
+        "hyprsunset",
+        "rofi",
+        "cliphist",
+        "ttf-nerd-fonts-symbols",
+        "nvidia-open",
+        "blueman",
+        "bluez",
+        "bluez-utils",
+        "flameshot",
+        "xdg-desktop-portal",
+        "xdg-desktop-portal-hyprland"
+      ],
+      "sync": true
+    },
+    {
+      "command": "exec",
+      "argument": "sudo sed -i 's/^#\\(\\[multilib\\]\\)$/\\1/; /^\\[multilib\\]$/,/^Include/s/^#Include/Include/' /etc/pacman.conf"
+    },
+    {
+      "command": "exec",
+      "argument": "sudo mkinitcpio -P"
+    },
+    {
+      "command": "package",
+      "args": [
+        "docker",
+        "docker-compose",
+        "lazygit",
+        "lazydocker",
+        "libreoffice-still",
+        "npm",
+        "jetbrains-toolbox",
+        "ark",
+        "konsole",
+        "imageviewer",
+        "mupdf",
+        "syncthing",
+        "chromium",
+        "python-pip",
+        "steam"
+      ]
+    },
+    {
+      "command": "define-custom",
+      "argument": "flatpak",
+      "args": [
+        "flatpak install %s"
+      ],
+      "allowPlural": true
+    },
+    {
+      "command": "flatpak",
+      "args": [
+        "flathub",
+        "io.github.flattool.Warehouse",
+        "app.zen_browser.zen",
+        "com.discordapp.Discord",
+        "com.github.IsmaelMartinez.teams_for_linux",
+        "com.github.tchx84.Flatseal",
+        "com.spotify.Client",
+        "com.stremio.Stremio",
+        "org.pulseaudio.pavucontrol",
+        "im.riot.Riot",
+        "md.obsidian.Obsidian"
+      ]
+    },
+    {
+      "command": "systemctl",
+      "argument": "syncthing.service --user",
+      "enable": true,
+      "start": true
+    },
+    {
+      "command": "systemctl",
+      "args": [
+        "bluetooth.service",
+        "docker"
+      ],
+      "enable": true,
+      "start": true
+    },
+    {
+      "command": "exec-in",
+      "argument": "~/",
+      "args": [
+        {
+          "command": "exec",
+          "argument": "mkdir Documents"
+        },
+        {
+          "command": "exec",
+          "argument": "mkdir Downloads"
+        },
+        {
+          "command": "exec",
+          "argument": "mkdir Music"
+        },
+        {
+          "command": "exec",
+          "argument": "mkdir Pictures"
+        },
+        {
+          "command": "exec",
+          "argument": "mkdir Templates"
+        },
+        {
+          "command": "exec",
+          "argument": "mkdir Videos"
+        }
+      ]
+    },
+    {
+      "command": "exec-in",
+      "argument": "~/Documents",
+      "args": [
+        {
+          "git": "git@github.com:oldmartijntje/Articles.git"
+        }
+      ]
+    },
+    {
+      "command": "exec-in",
+      "argument": "~/Pictures",
+      "args": [
+        {
+          "command": "exec",
+          "argument": "mkdir Screenshots"
+        }
+      ]
+    }
+  ]
 }
