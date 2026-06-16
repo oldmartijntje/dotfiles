@@ -20,6 +20,34 @@ hl.monitor({
     scale    = "1",
 })
 
+hl.workspace_rule({ 
+    workspace = "1",
+    monitor = "DP-4",
+    default = true
+})
+
+hl.workspace_rule({ 
+    workspace = "2",
+    monitor = "HDMI-A-2",
+    default = true
+})
+
+hl.workspace_rule({ 
+    workspace = "3",
+    monitor = "DP-6",
+    default = true
+})
+
+hl.workspace_rule({ 
+    workspace = "name:gaming",
+    monitor = "DP-4",
+    gaps_in = 0,
+    gaps_out = 0,
+    border_size = 0,
+    no_rounding = true,
+    layout = "monocle"
+})
+
 hl.bind(mods.mainMod .. " + CTRL + period", hl.dsp.exec_cmd("code ~/Documents/Code/Articles/"))
 
 hl.window_rule({
@@ -46,3 +74,7 @@ hl.window_rule({
     animation = fad,
     workspace = "1"
 })
+
+hl.on("hyprland.start", function () 
+  hl.exec_cmd("steam -silent")
+end)

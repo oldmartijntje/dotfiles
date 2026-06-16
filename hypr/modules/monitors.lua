@@ -10,17 +10,6 @@
 --     scale    = "1",
 -- })
 
-hl.workspace_rule({ 
-    workspace = "name:gaming",
-    monitor = "DP-4",
-    default = true,
-    gaps_in = 0,
-    gaps_out = 0,
-    border_size = 0,
-    no_rounding = true,
-    layout = "monocle"
-})
-
 hl.window_rule({
     name = "steam-big-picture",
     match = { class = "steam", title = "Steam Big Picture Mode" },

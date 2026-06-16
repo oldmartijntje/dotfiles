@@ -8,6 +8,22 @@ hl.monitor({
     scale    = "1",
 })
 
+hl.workspace_rule({ 
+    workspace = "1",
+    monitor = "eDP-1",
+    default = true
+})
+
+hl.workspace_rule({ 
+    workspace = "name:gaming",
+    monitor = "eDP-1",
+    gaps_in = 0,
+    gaps_out = 0,
+    border_size = 0,
+    no_rounding = true,
+    layout = "monocle"
+})
+
 hl.bind(mods.mainMod .. " + CTRL + period", hl.dsp.exec_cmd("code ~/Documents/Articles/"))
 
 hl.window_rule({
