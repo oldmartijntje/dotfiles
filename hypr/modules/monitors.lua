@@ -11,7 +11,7 @@
 -- })
 
 hl.workspace_rule({ 
-    workspace = "0",
+    workspace = "name:gaming",
     monitor = "DP-4",
     default = true,
     gaps_in = 0,
@@ -24,13 +24,13 @@ hl.workspace_rule({
 hl.window_rule({
     name = "steam-big-picture",
     match = { class = "steam", title = "Steam Big Picture Mode" },
-    workspace = "0",
+    workspace = "name:gaming",
 })
 
 hl.window_rule({
     name = "steam-games",
     match = { class = "steam_app_.*" },
-    workspace = "0",
+    workspace = "name:gaming",
     fullscreen = true,
     no_anim = true,
     keep_aspect_ratio = true,  -- Force aspect ratio

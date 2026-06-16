@@ -37,6 +37,7 @@ hl.bind(mods.mainMod .. " + V", hl.dsp.exec_cmd("rofi -modi clipboard:~/.config/
 
 hl.bind("ALT + TAB", hl.dsp.exec_cmd("rofi -show window"))
 hl.bind("CTRL + ALT + TAB", hl.dsp.exec_cmd("rofi -show combi -modes combi -combi-modes \"window,drun\""))
+hl.bind(mods.mainMod .. " + TAB", hl.dsp.exec_cmd("~/.config/bash-scripts/rofi_workspaces.sh"))
 
 
 -- Switch workspaces with mainMod + [0-9]
