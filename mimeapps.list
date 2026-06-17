@@ -1,8 +1,10 @@
 [Added Associations]
 application/vnd.ms-publisher=code-3.desktop;code-2.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice.desktop;
 text/plain=code-5.desktop;code-4.desktop;
 
 [Default Applications]
 application/vnd.ms-publisher=code-3.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice.desktop;
 text/plain=code-5.desktop;
 x-scheme-handler/jetbrains=jetbrainsd.desktop

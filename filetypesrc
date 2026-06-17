@@ -1,3 +1,4 @@
 [EmbedSettings]
 embed-application/vnd.ms-publisher=false
+embed-application/vnd.openxmlformats-officedocument.wordprocessingml.document=false
 embed-text/plain=false
