@@ -51,3 +51,7 @@ hl.window_rule({
     animation = fad,
     workspace = "1"
 })
+
+hl.on("hyprland.start", function () 
+  hl.exec_cmd("bash ~/.config/bash-scripts/battery.sh &")
+end)
