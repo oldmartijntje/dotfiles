@@ -1,10 +1,14 @@
 [Added Associations]
 application/vnd.ms-publisher=code-3.desktop;code-2.desktop;
 application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice.desktop;
-text/plain=code-5.desktop;code-4.desktop;
+image/png=com.github.aliencoweatcake.imageviewer.desktop;
+text/plain=code-6.desktop;code-5.desktop;code-4.desktop;
+video/mp4=vlc.desktop;
 
 [Default Applications]
 application/vnd.ms-publisher=code-3.desktop;
 application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice.desktop;
-text/plain=code-5.desktop;
+image/png=com.github.aliencoweatcake.imageviewer.desktop;
+text/plain=code-6.desktop;
+video/mp4=vlc.desktop;
 x-scheme-handler/jetbrains=jetbrainsd.desktop
