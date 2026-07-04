@@ -29,6 +29,7 @@ hl.bind(mods.mainMod .. " + period", hl.dsp.exec_cmd("code"))
 hl.bind(mods.mainMod .. " + SHIFT + period", hl.dsp.exec_cmd("code ~/.config/"))
 
 hl.bind(mods.mainMod .. " + D", hl.dsp.exec_cmd(mods.terminal .. " sudo lazydocker"))
+hl.bind(mods.mainMod .. " + G", hl.dsp.exec_cmd(mods.terminal .. " lazygit"))
 hl.bind(mods.mainMod .. " + O", hl.dsp.exec_cmd("flatpak run md.obsidian.Obsidian"))
 hl.bind(mods.mainMod .. " + Z", hl.dsp.exec_cmd("flatpak run app.zen_browser.zen"))
 
