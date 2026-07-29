@@ -16,3 +16,4 @@ text/markdown=code.desktop;
 text/plain=code-6.desktop;
 video/mp4=vlc.desktop;
 x-scheme-handler/jetbrains=jetbrainsd.desktop
+x-scheme-handler/bruno=bruno.desktop
