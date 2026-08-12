@@ -75,6 +75,13 @@ hl.window_rule({
     workspace = "1"
 })
 
+-- force the rider terminal on a specific workspace
+hl.window_rule({
+    name = "rider-terminal-workspace",
+    match = { initial_title = "Run", initial_class = "jetbrains-rider" },
+    workspace = "2"
+})
+
 hl.on("hyprland.start", function () 
   hl.exec_cmd("steam -silent")
 end)

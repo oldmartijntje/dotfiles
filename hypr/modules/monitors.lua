@@ -2,6 +2,9 @@
 ---- MONITORS ----
 ------------------
 
+-- use `hyprctl clients` to find all windows, TIP: make the window you are looking for the only one floating.
+
+
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 -- hl.monitor({
 --     output   = "eDP-1",
@@ -24,4 +27,11 @@ hl.window_rule({
     no_anim = true,
     keep_aspect_ratio = true,  -- Force aspect ratio
     immediate = true,          -- Allow tearing for smoother fullscreen
+})
+
+-- force the rider terminal to not float (it does by default)
+hl.window_rule({
+    name = "rider-terminal",
+    match = { initial_title = "Run", initial_class = "jetbrains-rider" },
+    float = false
 })
