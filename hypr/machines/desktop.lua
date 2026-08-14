@@ -67,12 +67,12 @@ hl.window_rule({
     float = true,
     pin = true,
     no_initial_focus = true,
-    move = {-1920, 0},
-    size = {1920 * 2 + 1440, 1080},
+    -- move = {-1920, 0},
+    -- size = {1920 * 2 + 1440, 1080},
     rounding = 0,
     border_size = 0,
     animation = fad,
-    workspace = "1"
+    -- workspace = "1"
 })
 
 -- force the rider terminal on a specific workspace
