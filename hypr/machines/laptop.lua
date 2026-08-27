@@ -11,13 +11,13 @@ hl.monitor({
     output   = "DVI-I-2", -- "DP-1",
     mode     = "1920x1080@144",
     position = "-1920x0",
-    scale    = "1",
+    scale    = "1.2",
 })
 hl.monitor({
     output   = "DVI-I-1", -- "HDMI-A-1",
     mode     = "1920x1080@60",
     position = "1920x0",
-    scale    = "1",
+    scale    = "0.8",
 })
 
 hl.workspace_rule({ 
