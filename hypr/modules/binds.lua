@@ -39,6 +39,7 @@ hl.bind("ALT + TAB", hl.dsp.exec_cmd("rofi -show window"))
 hl.bind("CTRL + ALT + TAB", hl.dsp.exec_cmd("rofi -show combi -modes combi -combi-modes \"window,drun\""))
 hl.bind(mods.mainMod .. " + TAB", hl.dsp.exec_cmd("~/.config/bash-scripts/rofi_workspaces.sh"))
 
+hl.bind("F8", hl.dsp.pass({ window = "class:(com\\.obsproject\\.Studio)" }))
 
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
