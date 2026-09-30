@@ -38,6 +38,7 @@ hl.bind(mods.mainMod .. " + V", hl.dsp.exec_cmd("rofi -modi clipboard:~/.config/
 hl.bind("ALT + TAB", hl.dsp.exec_cmd("rofi -show window"))
 hl.bind("CTRL + ALT + TAB", hl.dsp.exec_cmd("rofi -show combi -modes combi -combi-modes \"window,drun\""))
 hl.bind(mods.mainMod .. " + TAB", hl.dsp.exec_cmd("~/.config/bash-scripts/rofi_workspaces.sh"))
+hl.bind("ALT + P", hl.dsp.exec_cmd("~/.config/bash-scripts/rofi_monitor_layout.sh"))
 
 hl.bind("F8", hl.dsp.pass({ window = "class:^(com\\.obsproject\\.Studio)$" }))
 hl.bind("F6", hl.dsp.exec_cmd("omniclicker --toggle-id F6"))

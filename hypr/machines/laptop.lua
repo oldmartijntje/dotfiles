@@ -18,7 +18,6 @@ hl.workspace_rule({
 })
 
 hl.bind(mods.mainMod .. " + CTRL + period", hl.dsp.exec_cmd("code ~/Documents/Articles/"))
-hl.bind("ALT + P", hl.dsp.exec_cmd("~/.config/bash-scripts/rofi_monitor_layout.sh"))
 
 hl.window_rule({
     name = "flameshot-multi-display-fix",
