@@ -21,3 +21,4 @@ text/plain=code.desktop;
 video/mp4=vlc.desktop;
 x-scheme-handler/bruno=bruno.desktop
 x-scheme-handler/jetbrains=jetbrainsd.desktop
+x-scheme-handler/ror2mm=r2modman.desktop
