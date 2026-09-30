@@ -5,115 +5,131 @@ set -euo pipefail
 
 MACHINE="${XDG_SESSION_OPT:-laptop}"
 
-# screen | resolution | location | scale | disabled | mirror
 case "$MACHINE" in
     desktop)
         CONFIG_FILE="$HOME/.config/hypr/generated/monitor.lua"
-        PRIMARY="DP-4"
-        DEFAULT_LAYOUT=(
-            "DP-4|1920x1080@144|0x0|1|false|false"
-            "DP-6|1920x1080@144|-1920x0|1|false|false"
-            "HDMI-A-2|1440x900@60|1920x0|1|false|false"
-        )
-        PRIMARY_ONLY_LAYOUT=(
-            "DP-4|1920x1080@144|0x0|1|false|false"
-            "DP-6|1920x1080@144|-1920x0|1|true|false"
-            "HDMI-A-2|1440x900@60|1920x0|1|true|false"
-        )
-        DUPLICATE_LAYOUT=(
-            "DP-4|1920x1080@144|0x0|1|false|false"
-            "DP-6|1920x1080@144|0x0|1|false|DP-4"
-            "HDMI-A-2|1440x900@60|0x0|1|false|DP-4"
-        )
-        FLIPPED_LAYOUT=(
-            "DP-4|1920x1080@144|0x0|1|false|false"
-            "DP-6|1920x1080@144|1920x0|1|false|false"
-            "HDMI-A-2|1440x900@60|-1440x0|1|false|false"
-        )
-        OPTIONS=("Default" "Duplicate" "Primary only" "Default-flipped")
         ;;
     laptop|*)
         CONFIG_FILE="$HOME/.config/hypr/generated/monitor.lua"
-        PRIMARY="eDP-1"
-        DEFAULT_LAYOUT=(
-            "eDP-1|1920x1080@144|0x0|1|false|false"
-            "DVI-I-2|1920x1080@144|-1920x0|1|false|false"
-            "DP-1|1920x1080@60|1920x0|1|false|false"
-            "DVI-I-1|1920x1080@60|1920x0|1|false|false"
-            "HDMI-A-1|1920x1080@60|1920x0|1|false|false"
-        )
-        PRIMARY_ONLY_LAYOUT=(
-            "eDP-1|1920x1080@144|0x0|1|false|false"
-            "DVI-I-2|1920x1080@144|-1920x0|1|true|false"
-            "DP-1|1920x1080@60|1920x0|1|true|false"
-            "DVI-I-1|1920x1080@60|1920x0|1|true|false"
-            "HDMI-A-1|1920x1080@60|1920x0|1|true|false"
-        )
-        DUPLICATE_LAYOUT=(
-            "eDP-1|1920x1080@144|0x0|1|false|false"
-            "DVI-I-2|1920x1080@144|0x0|1|false|eDP-1"
-            "DP-1|1920x1080@144|0x0|1|false|eDP-1"
-            "DVI-I-1|1920x1080@60|0x0|1|false|eDP-1"
-            "HDMI-A-1|1920x1080@60|0x0|1|false|eDP-1"
-        )
-        FLIPPED_LAYOUT=(
-            "eDP-1|1920x1080@144|0x0|1|false|false"
-            "DVI-I-2|1920x1080@144|1920x0|1|false|false"
-            "DP-1|1920x1080@144|1920x0|1|false|false"
-            "DVI-I-1|1920x1080@60|-1920x0|1|false|false"
-            "HDMI-A-1|1920x1080@60|-1920x0|1|false|false"
-        )
-        TESTING_LAYOUT=(
-            "eDP-1|1920x1080@144|1920x0|1|false|false"
-            "DVI-I-2|1920x1080@144|0x0|1|false|false"
-            "DP-1|1920x1080@60|-1920x0|1|false|false"
-            "DVI-I-1|1920x1080@60|3840x0|1|false|false"
-            "HDMI-A-1|1920x1080@60|-3840x0|1|false|false"
-        )
-        OPTIONS=("Default" "Duplicate" "Primary only" "Default-flipped" "Testing")
         ;;
 esac
 
-selected=$(printf '%s\n' "${OPTIONS[@]}" | rofi -dmenu -p "Monitor Layout" || true)
+LAYOUTS_JSON=$(cat <<'JSON'
+{
+  "desktop": {
+    "options": ["Default", "Duplicate", "Primary only", "Default-flipped"],
+    "layouts": {
+      "Default": [
+        {"output": "DP-4", "mode": "1920x1080@144", "position": "0x0", "scale": "1", "disabled": false},
+        {"output": "DP-6", "mode": "1920x1080@144", "position": "-1920x0", "scale": "1", "disabled": false},
+        {"output": "HDMI-A-2", "mode": "1440x900@60", "position": "1920x0", "scale": "1", "disabled": false}
+      ],
+      "Primary only": [
+        {"output": "DP-4", "mode": "1920x1080@144", "position": "0x0", "scale": "1", "disabled": false},
+        {"output": "DP-6", "mode": "1920x1080@144", "position": "-1920x0", "scale": "1", "disabled": true},
+        {"output": "HDMI-A-2", "mode": "1440x900@60", "position": "1920x0", "scale": "1", "disabled": true}
+      ],
+      "Duplicate": [
+        {"output": "DP-4", "mode": "1920x1080@144", "position": "0x0", "scale": "1", "disabled": false},
+        {"output": "DP-6", "mode": "1920x1080@144", "position": "0x0", "scale": "1", "disabled": false, "mirror": "DP-4"},
+        {"output": "HDMI-A-2", "mode": "1440x900@60", "position": "0x0", "scale": "1", "disabled": false, "mirror": "DP-4"}
+      ],
+      "Default-flipped": [
+        {"output": "DP-4", "mode": "1920x1080@144", "position": "0x0", "scale": "1", "disabled": false},
+        {"output": "DP-6", "mode": "1920x1080@144", "position": "1920x0", "scale": "1", "disabled": false},
+        {"output": "HDMI-A-2", "mode": "1440x900@60", "position": "-1440x0", "scale": "1", "disabled": false}
+      ]
+    }
+  },
+  "laptop": {
+    "options": ["Default", "Duplicate", "Primary only", "Default-flipped", "Testing"],
+    "layouts": {
+      "Default": [
+        {"output": "eDP-1", "mode": "1920x1080@144", "position": "0x0", "scale": "1", "disabled": false},
+        {"output": "DVI-I-2", "mode": "1920x1080@144", "position": "-1920x0", "scale": "1", "disabled": false},
+        {"output": "DP-1", "mode": "1920x1080@60", "position": "1920x0", "scale": "1", "disabled": false},
+        {"output": "DVI-I-1", "mode": "1920x1080@60", "position": "1920x0", "scale": "1", "disabled": false},
+        {"output": "HDMI-A-1", "mode": "1920x1080@60", "position": "1920x0", "scale": "1", "disabled": false}
+      ],
+      "Primary only": [
+        {"output": "eDP-1", "mode": "1920x1080@144", "position": "0x0", "scale": "1", "disabled": false},
+        {"output": "DVI-I-2", "mode": "1920x1080@144", "position": "-1920x0", "scale": "1", "disabled": true},
+        {"output": "DP-1", "mode": "1920x1080@60", "position": "1920x0", "scale": "1", "disabled": true},
+        {"output": "DVI-I-1", "mode": "1920x1080@60", "position": "1920x0", "scale": "1", "disabled": true},
+        {"output": "HDMI-A-1", "mode": "1920x1080@60", "position": "1920x0", "scale": "1", "disabled": true}
+      ],
+      "Duplicate": [
+        {"output": "eDP-1", "mode": "1920x1080@144", "position": "0x0", "scale": "1", "disabled": false},
+        {"output": "DVI-I-2", "mode": "1920x1080@144", "position": "0x0", "scale": "1", "disabled": false, "mirror": "eDP-1"},
+        {"output": "DP-1", "mode": "1920x1080@144", "position": "0x0", "scale": "1", "disabled": false, "mirror": "eDP-1"},
+        {"output": "DVI-I-1", "mode": "1920x1080@60", "position": "0x0", "scale": "1", "disabled": false, "mirror": "eDP-1"},
+        {"output": "HDMI-A-1", "mode": "1920x1080@60", "position": "0x0", "scale": "1", "disabled": false, "mirror": "eDP-1"}
+      ],
+      "Default-flipped": [
+        {"output": "eDP-1", "mode": "1920x1080@144", "position": "0x0", "scale": "1", "disabled": false},
+        {"output": "DVI-I-2", "mode": "1920x1080@144", "position": "1920x0", "scale": "1", "disabled": false},
+        {"output": "DP-1", "mode": "1920x1080@144", "position": "1920x0", "scale": "1", "disabled": false},
+        {"output": "DVI-I-1", "mode": "1920x1080@60", "position": "-1920x0", "scale": "1", "disabled": false},
+        {"output": "HDMI-A-1", "mode": "1920x1080@60", "position": "-1920x0", "scale": "1", "disabled": false}
+      ],
+      "Testing": [
+        {"output": "eDP-1", "mode": "1920x1080@144", "position": "1920x0", "scale": "1", "disabled": false},
+        {"output": "DVI-I-2", "mode": "1920x1080@144", "position": "0x0", "scale": "1", "disabled": false},
+        {"output": "DP-1", "mode": "1920x1080@60", "position": "-1920x0", "scale": "1", "disabled": false},
+        {"output": "DVI-I-1", "mode": "1920x1080@60", "position": "3840x0", "scale": "1", "disabled": false},
+        {"output": "HDMI-A-1", "mode": "1920x1080@60", "position": "-3840x0", "scale": "1", "disabled": false}
+      ]
+    }
+  }
+}
+JSON
+)
+
+OPTIONS=$(python3 - "$MACHINE" "$LAYOUTS_JSON" <<'PY'
+import json
+import sys
+
+machine = sys.argv[1]
+data = json.loads(sys.argv[2])
+print("\n".join(data[machine]["options"]))
+PY
+)
+
+selected=$(printf '%s\n' "$OPTIONS" | rofi -dmenu -p "Monitor Layout" || true)
 
 if [[ -z "$selected" ]]; then
     exit 0
 fi
 
 case "$selected" in
-    "Default")
-        layout=("${DEFAULT_LAYOUT[@]}")
-        ;;
-    "Duplicate")
-        layout=("${DUPLICATE_LAYOUT[@]}")
-        ;;
-    "Primary only")
-        layout=("${PRIMARY_ONLY_LAYOUT[@]}")
-        ;;
-    "Default-flipped")
-        layout=("${FLIPPED_LAYOUT[@]}")
-        ;;
-    "Testing")
-        layout=("${TESTING_LAYOUT[@]}")
+    "Default"|"Duplicate"|"Primary only"|"Default-flipped"|"Testing")
         ;;
     *)
         exit 0
         ;;
 esac
 
-python3 - "$CONFIG_FILE" "$MACHINE" "$PRIMARY" "$selected" "${layout[@]}" <<'PY'
-import subprocess
+python3 - "$CONFIG_FILE" "$MACHINE" "$selected" "$LAYOUTS_JSON" <<'PY'
+import json
 import sys
 from pathlib import Path
 from textwrap import dedent
 
 config_path = Path(sys.argv[1])
-primary = sys.argv[3]
-layout = sys.argv[5:]
+machine = sys.argv[2]
+selected = sys.argv[3]
+data = json.loads(sys.argv[4])
+layout = data[machine]["layouts"][selected]
 
 monitor_lines = []
-for entry in layout:
-    output, mode, position, scale, disabled, mirror = entry.split("|", 5)
+for monitor in layout:
+    output = monitor["output"]
+    mode = monitor["mode"]
+    position = monitor["position"]
+    scale = str(monitor.get("scale", "1"))
+    disabled = str(bool(monitor.get("disabled", False))).lower()
+    mirror = monitor.get("mirror", False)
+
     monitor_lines.extend([
         "hl.monitor({",
         f'    output   = "{output}",',
@@ -121,8 +137,8 @@ for entry in layout:
         f'    position = "{position}",',
         f'    disabled = {disabled},',
     ])
-    if mirror != "" and mirror != "false":
-        monitor_lines.append(f'    mirror    = "{mirror}",')  
+    if mirror not in (None, False, "false", ""):
+        monitor_lines.append(f'    mirror   = "{mirror}",')
     monitor_lines.append(f'    scale    = "{scale}",')
     monitor_lines.append("})")
 
