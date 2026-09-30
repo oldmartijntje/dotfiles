@@ -1,6 +1,7 @@
 -- This is the archinstall of 07/06/2026
 local mods = require("modules.var")
 
+-- Monitor Config Start
 hl.monitor({
     output   = "DP-4",
     mode     = "1920x1080@144",
@@ -19,6 +20,7 @@ hl.monitor({
     position = "-1920x0",
     scale    = "1",
 })
+-- Monitor Config End
 
 hl.workspace_rule({ 
     workspace = "1",
@@ -49,6 +51,7 @@ hl.workspace_rule({
 })
 
 hl.bind(mods.mainMod .. " + CTRL + period", hl.dsp.exec_cmd("code ~/Documents/Code/Articles/"))
+hl.bind("ALT + P", hl.dsp.exec_cmd("~/.config/bash-scripts/rofi_monitor_layout_desktop.sh"))
 
 hl.window_rule({
   match = { title = ".*Discord.*" },

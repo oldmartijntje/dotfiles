@@ -1,6 +1,8 @@
 -- This is the archinstall of 28/05/2026 (probook laptop)
 local mods = require("modules.var")
 
+-- This get's automatically replaced by ctrl+p
+-- Monitor Config Start
 hl.monitor({
     output   = "eDP-1",
     mode     = "1920x1080@144",
@@ -8,17 +10,30 @@ hl.monitor({
     scale    = "1",
 })
 hl.monitor({
-    output   = "DVI-I-2", -- "DP-1",
+    output   = "DVI-I-2",
     mode     = "1920x1080@144",
     position = "-1920x0",
     scale    = "1",
 })
 hl.monitor({
-    output   = "DVI-I-1", -- "HDMI-A-1",
+    output   = "DP-1",
     mode     = "1920x1080@60",
     position = "1920x0",
     scale    = "1",
 })
+hl.monitor({
+    output   = "DVI-I-1",
+    mode     = "1920x1080@60",
+    position = "1920x0",
+    scale    = "1",
+})
+hl.monitor({
+    output   = "HDMI-A-1",
+    mode     = "1920x1080@60",
+    position = "1920x0",
+    scale    = "1",
+})
+-- Monitor Config End
 
 hl.workspace_rule({ 
     workspace = "1",
@@ -37,6 +52,7 @@ hl.workspace_rule({
 })
 
 hl.bind(mods.mainMod .. " + CTRL + period", hl.dsp.exec_cmd("code ~/Documents/Articles/"))
+hl.bind("ALT + P", hl.dsp.exec_cmd("~/.config/bash-scripts/rofi_monitor_layout.sh"))
 
 hl.window_rule({
     name = "flameshot-multi-display-fix",
