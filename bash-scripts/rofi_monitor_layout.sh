@@ -17,7 +17,7 @@ esac
 LAYOUTS_JSON=$(cat <<'JSON'
 {
   "desktop": {
-    "options": ["Default", "Duplicate", "Primary only", "Default-flipped"],
+    "options": ["Default", "Duplicate", "Primary only", "Default-flipped", "empty-config"],
     "layouts": {
       "Default": [
         {"output": "DP-4", "mode": "1920x1080@144", "position": "0x0", "scale": "1", "disabled": false},
@@ -38,11 +38,12 @@ LAYOUTS_JSON=$(cat <<'JSON'
         {"output": "DP-4", "mode": "1920x1080@144", "position": "0x0", "scale": "1", "disabled": false},
         {"output": "DP-6", "mode": "1920x1080@144", "position": "1920x0", "scale": "1", "disabled": false},
         {"output": "HDMI-A-2", "mode": "1440x900@60", "position": "-1440x0", "scale": "1", "disabled": false}
-      ]
+      ],
+      "empty-config": []
     }
   },
   "laptop": {
-    "options": ["Default", "Duplicate", "Primary only", "Default-flipped", "Testing"],
+    "options": ["Default", "Duplicate", "Primary only", "Default-flipped", "Testing", "empty-config"],
     "layouts": {
       "Default": [
         {"output": "eDP-1", "mode": "1920x1080@144", "position": "0x0", "scale": "1", "disabled": false},
@@ -78,7 +79,8 @@ LAYOUTS_JSON=$(cat <<'JSON'
         {"output": "DP-1", "mode": "1920x1080@60", "position": "-1920x0", "scale": "1", "disabled": false},
         {"output": "DVI-I-1", "mode": "1920x1080@60", "position": "3840x0", "scale": "1", "disabled": false},
         {"output": "HDMI-A-1", "mode": "1920x1080@60", "position": "-3840x0", "scale": "1", "disabled": false}
-      ]
+      ],
+      "empty-config": []
     }
   }
 }
@@ -102,7 +104,7 @@ if [[ -z "$selected" ]]; then
 fi
 
 case "$selected" in
-    "Default"|"Duplicate"|"Primary only"|"Default-flipped"|"Testing")
+    "Default"|"Duplicate"|"Primary only"|"Default-flipped"|"Testing"|"empty-config")
         ;;
     *)
         exit 0
