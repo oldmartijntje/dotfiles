@@ -52,7 +52,7 @@ case "$MACHINE" in
         ;;
 esac
 
-options=("Default" "Duplicate" "Default-flipped")
+options=("Default" "Duplicate" "Primary only" "Default-flipped")
 selected=$(printf '%s\n' "${options[@]}" | rofi -dmenu -p "Monitor Layout" || true)
 
 if [[ -z "$selected" ]]; then
@@ -65,6 +65,9 @@ case "$selected" in
         ;;
     "Duplicate")
         layout=("${DUPLICATE_LAYOUT[@]}")
+        ;;
+    "Primary only")
+        layout=("${DEFAULT_LAYOUT[@]}")
         ;;
     "Default-flipped")
         layout=("${FLIPPED_LAYOUT[@]}")
@@ -98,6 +101,7 @@ except Exception:
     connected = set()
 
 mirror_enabled = selected in ("Duplicate")
+primary_only = selected == "Primary only"
 
 lines = []
 for entry in layout:
@@ -109,8 +113,10 @@ for entry in layout:
         f'    output   = "{output}",',
         f'    mode     = "{mode}",',
         f'    position = "{position}",',
-        '    scale    = "1",',
     ])
+    if primary_only and position != "0x0":
+        lines.append('    disabled = true,')
+    lines.append('    scale    = "1",')
     if mirror_enabled and output != primary:
         lines.append(f'    mirror   = "{primary}",')
     lines.append("})")
