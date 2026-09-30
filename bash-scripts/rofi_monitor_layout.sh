@@ -29,6 +29,7 @@ case "$MACHINE" in
             "DP-6|1920x1080@144|1920x0|1|false"
             "HDMI-A-2|1440x900@60|-1920x0|1|false"
         )
+        OPTIONS=("Default" "Duplicate" "Primary only" "Default-flipped")
         ;;
     laptop|*)
         CONFIG_FILE="$HOME/.config/hypr/machines/laptop.lua"
@@ -61,11 +62,18 @@ case "$MACHINE" in
             "DVI-I-1|1920x1080@60|-1920x0|1|false"
             "HDMI-A-1|1920x1080@60|-1920x0|1|false"
         )
+        TESTING_LAYOUT=(
+            "eDP-1|1920x1080@144|1920x0|1|false"
+            "DVI-I-2|1920x1080@144|0x0|1|false"
+            "DP-1|1920x1080@60|-1920x0|1|false"
+            "DVI-I-1|1920x1080@60|3840x0|1|false"
+            "HDMI-A-1|1920x1080@60|-3840x0|1|false"
+        )
+        OPTIONS=("Default" "Duplicate" "Primary only" "Default-flipped" "Testing")
         ;;
 esac
 
-options=("Default" "Duplicate" "Primary only" "Default-flipped")
-selected=$(printf '%s\n' "${options[@]}" | rofi -dmenu -p "Monitor Layout" || true)
+selected=$(printf '%s\n' "${OPTIONS[@]}" | rofi -dmenu -p "Monitor Layout" || true)
 
 if [[ -z "$selected" ]]; then
     exit 0
@@ -83,6 +91,9 @@ case "$selected" in
         ;;
     "Default-flipped")
         layout=("${FLIPPED_LAYOUT[@]}")
+        ;;
+    "Testing")
+        layout=("${TESTING_LAYOUT[@]}")
         ;;
     *)
         exit 0
