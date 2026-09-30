@@ -1,30 +1,6 @@
 -- This is the archinstall of 07/06/2026
 local mods = require("modules.var")
 
--- Monitor Config Start
-hl.monitor({
-    output   = "DP-4",
-    mode     = "1920x1080@144",
-    position = "0x0",
-    disabled = false,
-    scale    = "1",
-})
-hl.monitor({
-    output   = "DP-6",
-    mode     = "1920x1080@144",
-    position = "-1920x0",
-    disabled = false,
-    scale    = "1",
-})
-hl.monitor({
-    output   = "HDMI-A-2",
-    mode     = "1440x900@60",
-    position = "1920x0",
-    disabled = false,
-    scale    = "1",
-})
--- Monitor Config End
-
 hl.workspace_rule({ 
     workspace = "1",
     monitor = "DP-4",

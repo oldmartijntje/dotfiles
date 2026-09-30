@@ -1,45 +1,6 @@
 -- This is the archinstall of 28/05/2026 (probook laptop)
 local mods = require("modules.var")
 
--- This get's automatically replaced by ctrl+p
--- Monitor Config Start
-hl.monitor({
-    output   = "eDP-1",
-    mode     = "1920x1080@144",
-    position = "0x0",
-    disabled = false,
-    scale    = "1",
-})
-hl.monitor({
-    output   = "DVI-I-2",
-    mode     = "1920x1080@144",
-    position = "-1920x0",
-    disabled = false,
-    scale    = "1",
-})
-hl.monitor({
-    output   = "DP-1",
-    mode     = "1920x1080@60",
-    position = "1920x0",
-    disabled = false,
-    scale    = "1",
-})
-hl.monitor({
-    output   = "DVI-I-1",
-    mode     = "1920x1080@60",
-    position = "1920x0",
-    disabled = false,
-    scale    = "1",
-})
-hl.monitor({
-    output   = "HDMI-A-1",
-    mode     = "1920x1080@60",
-    position = "1920x0",
-    disabled = false,
-    scale    = "1",
-})
--- Monitor Config End
-
 hl.workspace_rule({ 
     workspace = "1",
     monitor = "eDP-1",

@@ -6,6 +6,8 @@ require("modules.perms")
 require("modules.input")
 require("modules.design")
 
+require("generated.monitor")
+
 local machine = os.getenv("XDG_SESSION_OPT") or "archlinux"
 if machine == "archlinux" then
     require("machines.default")

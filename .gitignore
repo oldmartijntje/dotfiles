@@ -13,7 +13,6 @@ user-dirs.locale
 lazydocker/
 dolphinrc
 cookie
-env.lua
 baloofileinformationrc
 autostart/
 JetBrains/
@@ -48,3 +47,7 @@ kdeconnect/
 r2modman/
 r2modmanPlus-local/
 mimeapps.list
+
+# hyprland
+env.lua
+hypr/generated/
