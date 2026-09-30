@@ -107,9 +107,11 @@ identify_active_monitor() {
   fi
 
   if command -v zenity >/dev/null 2>&1; then
-    zenity --info --no-wrap --text="Current monitor: ${active_monitor}" >/dev/null 2>&1 || true
+    zenity --info --no-wrap --text="Current monitor: ${active_monitor}
+
+Run \"hyprctl monitors\" for more info." >/dev/null 2>&1 || true
   else
-    printf 'Current monitor: %s\n' "$active_monitor"
+    printf 'Current monitor: %s\n\nRun "hyprctl monitors" for more info.\n' "$active_monitor"
   fi
 }
 
