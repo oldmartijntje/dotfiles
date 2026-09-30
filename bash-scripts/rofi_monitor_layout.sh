@@ -10,44 +10,44 @@ case "$MACHINE" in
         CONFIG_FILE="$HOME/.config/hypr/machines/desktop.lua"
         PRIMARY="DP-4"
         DEFAULT_LAYOUT=(
-            "DP-4|1920x1080@144|0x0"
-            "DP-6|1920x1080@144|-1920x0"
-            "HDMI-A-2|1440x900@60|1920x0"
+            "DP-4|1920x1080@144|0x0|1"
+            "DP-6|1920x1080@144|-1920x0|1"
+            "HDMI-A-2|1440x900@60|1920x0|1"
         )
         DUPLICATE_LAYOUT=(
-            "DP-4|1920x1080@144|0x0"
-            "DP-6|1920x1080@144|0x0"
-            "HDMI-A-2|1440x900@60|0x0"
+            "DP-4|1920x1080@144|0x0|1"
+            "DP-6|1920x1080@144|0x0|1"
+            "HDMI-A-2|1440x900@60|0x0|1"
         )
         FLIPPED_LAYOUT=(
-            "DP-4|1920x1080@144|0x0"
-            "DP-6|1920x1080@144|1920x0"
-            "HDMI-A-2|1440x900@60|-1920x0"
+            "DP-4|1920x1080@144|0x0|1"
+            "DP-6|1920x1080@144|1920x0|1"
+            "HDMI-A-2|1440x900@60|-1920x0|1"
         )
         ;;
     laptop|*)
         CONFIG_FILE="$HOME/.config/hypr/machines/laptop.lua"
         PRIMARY="eDP-1"
         DEFAULT_LAYOUT=(
-            "eDP-1|1920x1080@144|0x0"
-            "DVI-I-2|1920x1080@144|-1920x0"
-            "DP-1|1920x1080@60|1920x0"
-            "DVI-I-1|1920x1080@60|1920x0"
-            "HDMI-A-1|1920x1080@60|1920x0"
+            "eDP-1|1920x1080@144|0x0|1"
+            "DVI-I-2|1920x1080@144|-1920x0|1"
+            "DP-1|1920x1080@60|1920x0|1"
+            "DVI-I-1|1920x1080@60|1920x0|1"
+            "HDMI-A-1|1920x1080@60|1920x0|1"
         )
         DUPLICATE_LAYOUT=(
-            "eDP-1|1920x1080@144|0x0"
-            "DVI-I-2|1920x1080@144|0x0"
-            "DP-1|1920x1080@144|0x0"
-            "DVI-I-1|1920x1080@60|0x0"
-            "HDMI-A-1|1920x1080@60|0x0"
+            "eDP-1|1920x1080@144|0x0|1"
+            "DVI-I-2|1920x1080@144|0x0|1"
+            "DP-1|1920x1080@144|0x0|1"
+            "DVI-I-1|1920x1080@60|0x0|1"
+            "HDMI-A-1|1920x1080@60|0x0|1"
         )
         FLIPPED_LAYOUT=(
-            "eDP-1|1920x1080@144|0x0"
-            "DVI-I-2|1920x1080@144|1920x0"
-            "DP-1|1920x1080@144|1920x0"
-            "DVI-I-1|1920x1080@60|-1920x0"
-            "HDMI-A-1|1920x1080@60|-1920x0"
+            "eDP-1|1920x1080@144|0x0|1"
+            "DVI-I-2|1920x1080@144|1920x0|1"
+            "DP-1|1920x1080@144|1920x0|1"
+            "DVI-I-1|1920x1080@60|-1920x0|1"
+            "HDMI-A-1|1920x1080@60|-1920x0|1"
         )
         ;;
 esac
@@ -105,7 +105,7 @@ primary_only = selected == "Primary only"
 
 lines = []
 for entry in layout:
-    output, mode, position = entry.split("|", 2)
+    output, mode, position, scale = entry.split("|", 3)
     if connected and output not in connected:
         continue
     lines.extend([
@@ -116,7 +116,7 @@ for entry in layout:
     ])
     if primary_only and position != "0x0":
         lines.append('    disabled = true,')
-    lines.append('    scale    = "1",')
+    lines.append(f'    scale    = "{scale}",')
     if mirror_enabled and output != primary:
         lines.append(f'    mirror   = "{primary}",')
     lines.append("})")
