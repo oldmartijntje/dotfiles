@@ -97,10 +97,33 @@ print("\n".join(data[machine]["options"]))
 PY
 )
 
+identify_active_monitor() {
+  local active_monitor
+
+  active_monitor=$(hyprctl monitors -j 2>/dev/null | python3 -c 'import json, sys; monitors = json.load(sys.stdin); print(next((monitor["name"] for monitor in monitors if monitor.get("focused")), ""))' || true)
+
+  if [[ -z "$active_monitor" ]]; then
+    return 0
+  fi
+
+  if command -v zenity >/dev/null 2>&1; then
+    zenity --info --no-wrap --text="Current monitor: ${active_monitor}" >/dev/null 2>&1 || true
+  else
+    printf 'Current monitor: %s\n' "$active_monitor"
+  fi
+}
+
+OPTIONS=$(printf '%s\nIdentify active monitor' "$OPTIONS")
+
 selected=$(printf '%s\n' "$OPTIONS" | rofi -dmenu -p "Monitor Layout" || true)
 
 if [[ -z "$selected" ]]; then
     exit 0
+fi
+
+if [[ "$selected" == "Identify active monitor" ]]; then
+  identify_active_monitor
+  exit 0
 fi
 
 case "$selected" in
