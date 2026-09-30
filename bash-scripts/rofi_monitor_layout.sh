@@ -10,44 +10,56 @@ case "$MACHINE" in
         CONFIG_FILE="$HOME/.config/hypr/machines/desktop.lua"
         PRIMARY="DP-4"
         DEFAULT_LAYOUT=(
-            "DP-4|1920x1080@144|0x0|1"
-            "DP-6|1920x1080@144|-1920x0|1"
-            "HDMI-A-2|1440x900@60|1920x0|1"
+            "DP-4|1920x1080@144|0x0|1|false"
+            "DP-6|1920x1080@144|-1920x0|1|false"
+            "HDMI-A-2|1440x900@60|1920x0|1|false"
+        )
+        PRIMARY_ONLY_LAYOUT=(
+            "DP-4|1920x1080@144|0x0|1|false"
+            "DP-6|1920x1080@144|-1920x0|1|true"
+            "HDMI-A-2|1440x900@60|1920x0|1|true"
         )
         DUPLICATE_LAYOUT=(
-            "DP-4|1920x1080@144|0x0|1"
-            "DP-6|1920x1080@144|0x0|1"
-            "HDMI-A-2|1440x900@60|0x0|1"
+            "DP-4|1920x1080@144|0x0|1|false"
+            "DP-6|1920x1080@144|0x0|1|false"
+            "HDMI-A-2|1440x900@60|0x0|1|false"
         )
         FLIPPED_LAYOUT=(
-            "DP-4|1920x1080@144|0x0|1"
-            "DP-6|1920x1080@144|1920x0|1"
-            "HDMI-A-2|1440x900@60|-1920x0|1"
+            "DP-4|1920x1080@144|0x0|1|false"
+            "DP-6|1920x1080@144|1920x0|1|false"
+            "HDMI-A-2|1440x900@60|-1920x0|1|false"
         )
         ;;
     laptop|*)
         CONFIG_FILE="$HOME/.config/hypr/machines/laptop.lua"
         PRIMARY="eDP-1"
         DEFAULT_LAYOUT=(
-            "eDP-1|1920x1080@144|0x0|1"
-            "DVI-I-2|1920x1080@144|-1920x0|1"
-            "DP-1|1920x1080@60|1920x0|1"
-            "DVI-I-1|1920x1080@60|1920x0|1"
-            "HDMI-A-1|1920x1080@60|1920x0|1"
+            "eDP-1|1920x1080@144|0x0|1|false"
+            "DVI-I-2|1920x1080@144|-1920x0|1|false"
+            "DP-1|1920x1080@60|1920x0|1|false"
+            "DVI-I-1|1920x1080@60|1920x0|1|false"
+            "HDMI-A-1|1920x1080@60|1920x0|1|false"
+        )
+        PRIMARY_ONLY_LAYOUT=(
+            "eDP-1|1920x1080@144|0x0|1|false"
+            "DVI-I-2|1920x1080@144|-1920x0|1|true"
+            "DP-1|1920x1080@60|1920x0|1|true"
+            "DVI-I-1|1920x1080@60|1920x0|1|true"
+            "HDMI-A-1|1920x1080@60|1920x0|1|true"
         )
         DUPLICATE_LAYOUT=(
-            "eDP-1|1920x1080@144|0x0|1"
-            "DVI-I-2|1920x1080@144|0x0|1"
-            "DP-1|1920x1080@144|0x0|1"
-            "DVI-I-1|1920x1080@60|0x0|1"
-            "HDMI-A-1|1920x1080@60|0x0|1"
+            "eDP-1|1920x1080@144|0x0|1|false"
+            "DVI-I-2|1920x1080@144|0x0|1|false"
+            "DP-1|1920x1080@144|0x0|1|false"
+            "DVI-I-1|1920x1080@60|0x0|1|false"
+            "HDMI-A-1|1920x1080@60|0x0|1|false"
         )
         FLIPPED_LAYOUT=(
-            "eDP-1|1920x1080@144|0x0|1"
-            "DVI-I-2|1920x1080@144|1920x0|1"
-            "DP-1|1920x1080@144|1920x0|1"
-            "DVI-I-1|1920x1080@60|-1920x0|1"
-            "HDMI-A-1|1920x1080@60|-1920x0|1"
+            "eDP-1|1920x1080@144|0x0|1|false"
+            "DVI-I-2|1920x1080@144|1920x0|1|false"
+            "DP-1|1920x1080@144|1920x0|1|false"
+            "DVI-I-1|1920x1080@60|-1920x0|1|false"
+            "HDMI-A-1|1920x1080@60|-1920x0|1|false"
         )
         ;;
 esac
@@ -67,7 +79,7 @@ case "$selected" in
         layout=("${DUPLICATE_LAYOUT[@]}")
         ;;
     "Primary only")
-        layout=("${DEFAULT_LAYOUT[@]}")
+        layout=("${PRIMARY_ONLY_LAYOUT[@]}")
         ;;
     "Default-flipped")
         layout=("${FLIPPED_LAYOUT[@]}")
@@ -101,11 +113,10 @@ except Exception:
     connected = set()
 
 mirror_enabled = selected in ("Duplicate")
-primary_only = selected == "Primary only"
 
 lines = []
 for entry in layout:
-    output, mode, position, scale = entry.split("|", 3)
+    output, mode, position, scale, disabled = entry.split("|", 4)
     if connected and output not in connected:
         continue
     lines.extend([
@@ -113,9 +124,8 @@ for entry in layout:
         f'    output   = "{output}",',
         f'    mode     = "{mode}",',
         f'    position = "{position}",',
+        f'    disabled = {disabled},',
     ])
-    if primary_only and position != "0x0":
-        lines.append('    disabled = true,')
     lines.append(f'    scale    = "{scale}",')
     if mirror_enabled and output != primary:
         lines.append(f'    mirror   = "{primary}",')
