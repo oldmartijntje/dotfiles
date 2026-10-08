@@ -171,8 +171,6 @@ for monitor in layout:
 
 monitor_block = "\n".join(monitor_lines)
 content = dedent("""
-    -- This is the archinstall of 07/06/2026
-
     -- This get's automatically replaced by alt+p
     -- Monitor Config Start
     __MONITOR_BLOCK__
