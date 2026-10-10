@@ -4,19 +4,47 @@ local mods = require("modules.var")
 hl.workspace_rule({ 
     workspace = "1",
     monitor = "DP-4",
-    default = true
+    default = true,
+    persistent = true
 })
 
 hl.workspace_rule({ 
     workspace = "2",
     monitor = "HDMI-A-2",
-    default = true
+    default = true,
+    persistent = true
 })
 
 hl.workspace_rule({ 
     workspace = "3",
     monitor = "DP-6",
-    default = true
+    default = true,
+    persistent = true
+})
+
+hl.workspace_rule({ 
+    workspace = "4",
+    monitor = "DP-4"
+})
+hl.window_rule({ 
+    match = {
+        workspace = "4"
+    },
+    float = true,
+    size = {"(monitor_w*0.5)", "(monitor_h*0.5)"},
+    opacity = 0.8,
+    border_color = "rgb(FF00BF)",
+ })
+
+hl.workspace_rule({ 
+    workspace = "5",
+    monitor = "HDMI-A-2",
+
+})
+
+hl.workspace_rule({ 
+    workspace = "6",
+    monitor = "DP-6",
 })
 
 hl.workspace_rule({ 
