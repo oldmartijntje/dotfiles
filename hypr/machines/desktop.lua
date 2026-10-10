@@ -34,17 +34,35 @@ hl.window_rule({
     size = {"(monitor_w*0.5)", "(monitor_h*0.5)"},
     opacity = 0.8,
     border_color = "rgb(FF00BF)",
- })
+})
 
 hl.workspace_rule({ 
     workspace = "5",
     monitor = "HDMI-A-2",
 
 })
+hl.window_rule({ 
+    match = {
+        workspace = "5"
+    },
+    float = true,
+    size = {"(monitor_w*0.5)", "(monitor_h*0.5)"},
+    opacity = 0.8,
+    border_color = "rgb(FF7700)",
+})
 
 hl.workspace_rule({ 
     workspace = "6",
     monitor = "DP-6",
+})
+hl.window_rule({ 
+    match = {
+        workspace = "6"
+    },
+    float = true,
+    size = {"(monitor_w*0.5)", "(monitor_h*0.5)"},
+    opacity = 0.8,
+    border_color = "rgb(0077FF)",
 })
 
 hl.workspace_rule({ 
