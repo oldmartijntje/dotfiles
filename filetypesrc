@@ -2,6 +2,7 @@
 embed-application/pdf=false
 embed-application/vnd.ms-publisher=false
 embed-application/vnd.openxmlformats-officedocument.wordprocessingml.document=false
+embed-application/zip=false
 embed-image/jpeg=false
 embed-image/png=false
 embed-inode/directory=false

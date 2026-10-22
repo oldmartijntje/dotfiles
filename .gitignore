@@ -51,3 +51,4 @@ mimeapps.list
 # hyprland
 env.lua
 hypr/generated/
+gtk-3.0/bookmarks
