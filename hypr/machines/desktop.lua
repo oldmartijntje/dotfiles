@@ -86,6 +86,17 @@ hl.window_rule({
   match = { title = ".*Spotify.*" },
   workspace = "2"
 })
+hl.window_rule({
+  match = { class = "hyprland-share-picker" },
+  border_color = "rgb(0000FF)",
+  workspace = "3"
+})
+hl.window_rule({
+  match = { class = "com.obsproject.Studio" },
+  border_color = "rgb(0000FF)",
+  workspace = "3"
+})
+
 
 -- making flameshot work across multiple screens
 hl.window_rule({
