@@ -1,70 +1,39 @@
 -- This is the archinstall of 07/06/2026
 local mods = require("modules.var")
 
+-- WORKSPACE RULES --
+
 hl.workspace_rule({ 
     workspace = "1",
     monitor = "DP-4",
     default = true,
     persistent = true
 })
-
 hl.workspace_rule({ 
     workspace = "2",
-    monitor = "HDMI-A-2",
-    default = true,
-    persistent = true
-})
-
-hl.workspace_rule({ 
-    workspace = "3",
     monitor = "DP-6",
     default = true,
     persistent = true
 })
-
 hl.workspace_rule({ 
-    workspace = "4",
+    workspace = "3",
     monitor = "DP-4"
 })
-hl.window_rule({ 
-    match = {
-        workspace = "4"
-    },
-    float = true,
-    size = {"(monitor_w*0.5)", "(monitor_h*0.5)"},
-    opacity = 0.8,
-    border_color = "rgb(FF00BF)",
+hl.workspace_rule({ 
+    workspace = "4",
+    monitor = "DP-6",
 })
-
 hl.workspace_rule({ 
     workspace = "5",
     monitor = "HDMI-A-2",
+    default = true,
+    persistent = true
+})
+-- hl.workspace_rule({ -- don't think we need a 6th workspace allocated as default
+--     workspace = "6",
+--     monitor = "HDMI-A-2",
 
-})
-hl.window_rule({ 
-    match = {
-        workspace = "5"
-    },
-    float = true,
-    size = {"(monitor_w*0.5)", "(monitor_h*0.5)"},
-    opacity = 0.8,
-    border_color = "rgb(FF7700)",
-})
-
-hl.workspace_rule({ 
-    workspace = "6",
-    monitor = "DP-6",
-})
-hl.window_rule({ 
-    match = {
-        workspace = "6"
-    },
-    float = true,
-    size = {"(monitor_w*0.5)", "(monitor_h*0.5)"},
-    opacity = 0.8,
-    border_color = "rgb(0077FF)",
-})
-
+-- })
 hl.workspace_rule({ 
     workspace = "name:gaming",
     monitor = "DP-4",
@@ -75,28 +44,57 @@ hl.workspace_rule({
     layout = "monocle"
 })
 
-hl.bind(mods.mainMod .. " + CTRL + period", hl.dsp.exec_cmd("code ~/Documents/Code/Articles/"))
+-- WINDOW RULES --
+
+hl.window_rule({ 
+    match = {
+        workspace = "3"
+    },
+    float = true,
+    size = {"(monitor_w*0.5)", "(monitor_h*0.5)"},
+    opacity = 0.8,
+    border_color = "rgb(FF00BF)",
+})
+
+hl.window_rule({ 
+    match = {
+        workspace = "4"
+    },
+    float = true,
+    size = {"(monitor_w*0.5)", "(monitor_h*0.5)"},
+    opacity = 0.8,
+    border_color = "rgb(FF7700)",
+})
+
+hl.window_rule({ 
+    match = {
+        workspace = "6"
+    },
+    float = true,
+    size = {"(monitor_w*0.5)", "(monitor_h*0.5)"},
+    opacity = 0.8,
+    border_color = "rgb(0077FF)",
+})
 
 hl.window_rule({
   match = { title = ".*Discord.*" },
   border_color = "rgb(0000FF)",
-  workspace = "2"
+  workspace = "5"
 })
 hl.window_rule({
   match = { title = ".*Spotify.*" },
-  workspace = "2"
+  workspace = "5"
 })
 hl.window_rule({
   match = { class = "hyprland-share-picker" },
   border_color = "rgb(0000FF)",
-  workspace = "3"
+  workspace = "4"
 })
 hl.window_rule({
   match = { class = "com.obsproject.Studio" },
   border_color = "rgb(0000FF)",
-  workspace = "3"
+  workspace = "4"
 })
-
 
 -- making flameshot work across multiple screens
 hl.window_rule({
@@ -121,6 +119,10 @@ hl.window_rule({
     match = { initial_title = "Run", initial_class = "jetbrains-rider" },
     workspace = "2"
 })
+
+-- OTHER THINGS --
+
+hl.bind(mods.mainMod .. " + CTRL + period", hl.dsp.exec_cmd("code ~/Documents/Code/Articles/"))
 
 hl.on("hyprland.start", function () 
   hl.exec_cmd("steam -silent")
