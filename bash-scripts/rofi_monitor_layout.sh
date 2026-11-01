@@ -80,6 +80,13 @@ LAYOUTS_JSON=$(cat <<'JSON'
         {"output": "DVI-I-1", "mode": "1920x1080@60", "position": "3840x0", "scale": "1", "disabled": false},
         {"output": "HDMI-A-1", "mode": "1920x1080@60", "position": "-3840x0", "scale": "1", "disabled": false}
       ],
+      "Vugtman": [
+        {"output": "eDP-1", "mode": "1920x1080@144", "position": "0x0", "scale": "1", "disabled": false},
+        {"output": "DVI-I-2", "mode": "1920x1080@144", "position": "-1920x0", "scale": "1", "disabled": false},
+        {"output": "DP-1", "mode": "1920x1080@60", "position": "1920x0", "scale": "1", "disabled": false},
+        {"output": "DVI-I-1", "mode": "1920x1080@60", "position": "1920x0", "scale": "1", "disabled": false},
+        {"output": "HDMI-A-1", "mode": "1920x1080@60", "position": "-1920x0", "scale": "1", "disabled": false}
+      ],
       "empty-config": []
     }
   }
