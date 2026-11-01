@@ -43,7 +43,7 @@ LAYOUTS_JSON=$(cat <<'JSON'
     }
   },
   "laptop": {
-    "options": ["Default", "Duplicate", "Primary only", "Default-flipped", "Testing", "empty-config"],
+    "options": ["Default", "Duplicate", "Primary only", "Default-flipped", "Testing", "empty-config", "Vugtman"],
     "layouts": {
       "Default": [
         {"output": "eDP-1", "mode": "1920x1080@144", "position": "0x0", "scale": "1", "disabled": false},
@@ -136,7 +136,7 @@ if [[ "$selected" == "Identify active monitor" ]]; then
 fi
 
 case "$selected" in
-    "Default"|"Duplicate"|"Primary only"|"Default-flipped"|"Testing"|"empty-config")
+    "Default"|"Duplicate"|"Primary only"|"Default-flipped"|"Testing"|"empty-config"|"Vugtman")
         ;;
     *)
         exit 0
