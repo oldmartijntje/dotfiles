@@ -88,12 +88,12 @@ hl.window_rule({
 hl.window_rule({
   match = { class = "hyprland-share-picker" },
   border_color = "rgb(0000FF)",
-  workspace = "4"
+  workspace = "1"
 })
 hl.window_rule({
   match = { class = "com.obsproject.Studio" },
   border_color = "rgb(0000FF)",
-  workspace = "4"
+  workspace = "1"
 })
 
 -- making flameshot work across multiple screens
