@@ -47,6 +47,7 @@ kdeconnect/
 r2modman/
 r2modmanPlus-local/
 mimeapps.list
+audacity/
 
 # hyprland
 env.lua
