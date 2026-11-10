@@ -48,6 +48,10 @@ r2modman/
 r2modmanPlus-local/
 mimeapps.list
 audacity/
+pavucontrol.ini
+database
+state
+*.sql
 
 # hyprland
 env.lua

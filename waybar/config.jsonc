@@ -9,31 +9,24 @@
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
-        "custom/power",
-        "sway/mode",
-        "sway/scratchpad",
-        "custom/media"
+        // "custom/power",
+        "hyprland/workspaces",
+        "hyprland/submap",
+        "mpris"
+        // "hyprland/window"
     ],
-    "modules-center": [
-        "sway/window"
-    ],
+    "modules-center": [],
     "modules-right": [
-        "mpd",
-        // "idle_inhibitor",
         "pulseaudio",
         "network",
-        "power-profiles-daemon",
+        // "power-profiles-daemon",
         "cpu",
         "memory",
         "temperature",
-        // "bluetooth",
         "backlight",
-        "keyboard-state",
-        "sway/language",
-        "hyprland/workspaces",
-        "hyprland/submap",
+        // "keyboard-state",
+        // "hyprland/language",
         "battery",
-        "battery#bat2",
         "clock",
         "tray"
     ],
@@ -111,6 +104,26 @@
         "tooltip-format": "MPD (connected)",
         "tooltip-format-disconnected": "MPD (disconnected)"
     },
+    "mpris": {
+        "player": "spotify",
+        "format": "{player_icon} {dynamic}",
+        "format-paused": "{status_icon} {dynamic}",
+        "dynamic-order": [
+            "artist",
+            "title"
+        ],
+        "title-len": 30,
+        "max-length": 50,
+        "on-click": "playerctl -p spotify play-pause",
+        "player-icons": {
+            "default": ">"
+            // "spotify": "Spotify:"
+        },
+        "status-icons": {
+            "paused": "II",
+            "playing": ">"
+        }
+    },
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
@@ -119,7 +132,7 @@
         }
     },
     "tray": {
-        // "icon-size": 21,
+        "icon-size": 21,
         "spacing": 10,
         // "icons": {
         //   "blueman": "bluetooth",
@@ -203,7 +216,8 @@
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ipaddr}/{cidr} ",
+        "format-ethernet": "Ethernet",
+        // "format-ethernet": "{ipaddr}/{cidr} ",
         "tooltip-format": "{ifname} via {gwaddr} ",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
