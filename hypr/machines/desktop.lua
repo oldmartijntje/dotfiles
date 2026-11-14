@@ -106,6 +106,17 @@ hl.window_rule({
     workspace = "3",
     float = false
 })
+hl.window_rule({
+    match = {
+        class = "chromium",
+        initial_title = "DevTools"
+    },
+    workspace = "2",
+    float = true,
+    opacity = 0.8,
+    size = {850, 550},
+    move = {10, 50}
+})
 
 hl.window_rule({
     match = {
