@@ -88,6 +88,19 @@ hl.window_rule({
   float = true,
   move = {10,50}
 })
+
+hl.window_rule({
+  match = { class = "chromium" },
+  workspace = "3",
+  float = false
+})
+
+hl.window_rule({
+  match = { class = "steam_app_3548580" },
+  workspace = "6",
+  fullscreen = true
+})
+
 hl.window_rule({
   match = { class = "hyprland-share-picker" },
   border_color = "rgb(0000FF)",
