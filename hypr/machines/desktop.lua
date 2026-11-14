@@ -83,7 +83,10 @@ hl.window_rule({
 })
 hl.window_rule({
   match = { title = ".*Spotify.*" },
-  workspace = "5"
+  workspace = "4",
+  size = { 1500, 900 },
+  float = true,
+  move = {10,50}
 })
 hl.window_rule({
   match = { class = "hyprland-share-picker" },
